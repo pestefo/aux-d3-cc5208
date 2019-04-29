@@ -14,7 +14,6 @@ Para comenzar a trabajar debes seguir los siguiente pasos:
    ```
 
    Esto tiene como finalidad servir en forma local el archivo de datos y la librería (y cualquier otro archivo que necesitemos utilizar).
-   
 
 2. Abre tu navegador web favorito y dirígete a `http://localhost:8080`.
 
@@ -41,9 +40,9 @@ Ej: `<div id="myDiv" class="container"> ... </div>` es un objeto de tipo *div* y
 Se puede acceder a este objeto de tres manera
 
 1. Por tipo: `d3.select("div")` 
-	. Por id: `d3.select("#myDiv")`	
+2. Por id: `d3.select("#myDiv")`	
 3. Por clase: `d3.select(".container")`
-  
+
 
 ### SVG: Scalable Vector Graphics
 
@@ -87,7 +86,7 @@ var circle = svg.append("circle") // Adjuntamos un elemento circle al SVG
 3. Asociar datos a archivos.
 
 ```javascript
-# Comentar el snippet anterior (var circle = svg.app... )
+// Comentar el snippet anterior (var circle = svg.app... )
 var my_data = [1, 2, 3, 4, 5];
 var circles = svg.selectAll("circle")
     .data(my_data)
@@ -101,7 +100,7 @@ var circles = svg.selectAll("circle")
     	.style("stroke-width", 5);
 ```
 
--	Cuando la data ha sido asociada a los elementos, no es necesario volver a asociarlos (con el operador `data`). D3 va a usar la data ligada anteriorment —> Se puede entonces recomputar las propiedades sin tener que entregar los datos nuevamente
+-	Cuando la data ha sido asociada a los elementos, no es necesario volver a asociarlos (con el operador `data`). D3 va a usar la data ligada anteriormente: se puede entonces **recomputar las propiedades sin tener que entregar los datos nuevamente**.
 ### Asociación entre DOM y datos:  enter(), update y exit():
 
 **D3 enlaza datos a elementos del DOM**
@@ -270,6 +269,6 @@ leyenda.append("text")
 
 
 
-----
+## Créditos
 
-Este documento fue inicialmente escrito por Vanessa Araya (http://vpena.me/) y actualizado y aumentado por Pablo Estefó (https://pestefo.github.io/), Mayo 2018.
+Este documento fue inicialmente escrito por Vanessa Araya (http://vpena.me/) y actualizado y aumentado por Pablo Estefó (http://pestefo.me), Mayo 2018.

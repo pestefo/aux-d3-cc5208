@@ -72,13 +72,14 @@ var datos;
 // var circle1 = svg.append("circle")
 // 				.attr("cx", 50)
 // 				.attr("cy", 50)
-// 				.attr("r", 5);
+// 				.attr("r", 5)
+//              .attr("fill", "orange");
 
 // svg.selectAll("circle")		// 1. Seleccionamos todos los círculos existentes: circle1		
 // 	.data(datos)			// 2. Asociamos los datos a los círculos seleccionados: 
-// 							//    circle1 <-> 10 (datos[0])
+// 							//    circle1 <-> datos[0] (10)
 // 	.enter()				// 3. Seleccionamos todos los datos que no fueron asociados 
-// 							//    anteriormente: 20 (datos[1])
+// 							//    anteriormente: datos[1] (20)
 // 		.append("circle")	// 4. Los atributos del nuevo círculo están asociados a datos[1]
 //  		.attr("cx", function(d){ return d*10; })  // cx = datos[1]*10 = 20*10 = 200  					
 // 		.attr("cy", 100)						  // cy = 100	
@@ -107,12 +108,14 @@ var datos;
 // var circle1 = svg.append("circle")
 // 				.attr("cx", 100)
 // 				.attr("cy", 100)
-// 				.attr("r", 5);
+// 				.attr("r", 5)
+//              .attr("fill", "orange");
 
 // var circle2 = svg.append("circle")
 // 				.attr("cx", 150)
 // 				.attr("cy", 100)
-// 				.attr("r", 10);				
+// 				.attr("r", 10)
+//              .attr("fill", "pink");				
 
 // // UPDATE 
 // svg.selectAll("circle")		// 1. Seleccionamos todos los círculos existentes: circle1		
@@ -143,14 +146,16 @@ var datos;
 
 // // Cantidad de DOM elements = 2 
 // var circle1 = svg.append("circle")
-// 				.attr("cx", 100)
-// 				.attr("cy", 100)
-// 				.attr("r", 5);
+//              .attr("cx", 100)
+//              .attr("cy", 100)
+//              .attr("r", 5)
+//              .attr("fill", "orange");
 
 // var circle2 = svg.append("circle")
-// 				.attr("cx", 150)
-// 				.attr("cy", 100)	
-// 				.attr("r", 10);				
+//              .attr("cx", 150)
+//              .attr("cy", 100)
+//              .attr("r", 10)
+//              .attr("fill", "pink");              			
 
 // svg.selectAll("circle")		// 1. Seleccionamos todos los círculos existentes: 
 // 							//	  circle1 y circle2		
