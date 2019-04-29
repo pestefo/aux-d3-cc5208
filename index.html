@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    	<meta charset="utf-8">
+        <title>Tutorial D3</title>
+        <script src="d3.min.js" charset="utf-8"></script>
+ 		<style type="text/css">
+        	.tooltip {
+			  position: absolute;
+			  width: 200px;
+			  height: 50px;
+			  pointer-events: none;
+			  background-color: #fff;
+			}
+		</style>
+    </head>
+    <body>
+    	<div id="chart" class="clase1"></div>
+    	<script type="text/javascript">
+            d3.csv("test_data.csv", function(error, data) {
+                // Casting de String -> Number
+                data.forEach(function(d){
+
+                    d.v1 = +d.v1;
+                    d.v2 = +d.v2;
+                    d.v3 = +d.v3;
+                });
+
+                var margin = {
+                    top: 20,
+                    right: 10,
+                    bottom: 20,
+                    left: 50
+                };
+                var width = 500 - margin.left - margin.right,
+                    height = 300 - margin.top - margin.bottom;
+
+                var svg = d3.select("#chart").append("svg")
+                    .attr("width", width + margin.left + margin.right)
+                    .attr("height", height + margin.top + margin.bottom)
+                    .append("g")
+                    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+
+                // Crear escala de colores
+                var color = d3.scale.category10()
+
+                // Crear escala de eje x y el eje mismo
+                var x = d3.scale.linear()
+                    .domain([0, d3.max(data, function(d) {
+                        return +d.v1
+                    })])
+                    .range([0, width]);
+
+                var xAxis = d3.svg.axis()
+                    .scale(x)
+                    .orient("bottom");
+
+                svg.append("g")
+                    .attr("transform", "translate(0," + height + ")")
+                    .call(xAxis);
+
+                // Crear escala de eje y y el eje mismo
+                var y = d3.scale.linear()
+                    .domain([0, d3.max(data, function(d) {
+                        return +d.v2
+                    })])
+                    .range([height, 0]);
+
+                var yAxis = d3.svg.axis()
+                    .scale(y)
+                    .orient("left");
+
+                svg.append("g")
+                    .call(yAxis);
+
+                // Crear tooltip interactivo
+                var tooltip = d3.select("body")
+                    .append("div")
+                    .attr("class", "tooltip")
+                    .style("opacity", 0);
+
+                // Crear circulos
+                var circles = svg.selectAll("circle")
+                    .data(data)
+                    .enter()
+                    .append("circle")
+                    .attr("cx", function(d) {
+                        return x(d.v1)
+                    })
+                    .attr("cy", function(d) {
+                        return y(d.v2)
+                    })
+                    .attr("r", function(d) {
+                        return d.v3
+                    })
+                    .style("fill", function(d) {
+                        return color(d.v4)
+                    })
+                    .style("opacity", 0.8)
+                    .on("mouseover", function(d) {
+                        tooltip.html("col4 = " + d.v4)
+                            .style("left", (d3.event.pageX + 5) + "px")
+                            .style("top", (d3.event.pageY - 28) + "px")
+                            .style("opacity", 1)
+                    })
+                    .on("mouseout", function(d) {
+                        tooltip.style("opacity", 0)
+                    })
+
+                // Crear leyenda
+                var leyenda = svg.selectAll(".leyenda")
+                    .data(color.domain())
+                    .enter()
+                    .append("g")
+
+                    .attr("class", "leyenda")
+                    .attr("transform", function(d, i) {
+                        return "translate(-50," + i * 20 + ")";
+                    });
+
+                leyenda.append("rect")
+                    .attr("x", width - 18)
+                    .attr("width", 18)
+                    .attr("height", 18)
+                    .style("fill", color);
+
+                leyenda.append("text")
+                    .attr("x", width - 24)
+                    .attr("y", 9)
+                    .attr("dy", ".35em")
+                    .style("text-anchor", "end")
+                    .text(function(d) {
+                        return d;
+                    });
+            }); 
+    	</script>
+    </body>
+</html>
